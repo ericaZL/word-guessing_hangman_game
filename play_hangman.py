@@ -35,9 +35,17 @@ def replace_all(secret, guess, cur):
     occ = secret.count(guess)
     pos = 0
     l = len(secret)
-    for i in range(l):
-        if secret[i] == guess:
-            cur = cur[:i] + guess + cur[i+1:]
+    ## O(n^2)
+    #for i in range(l):
+    #    if secret[i] == guess:
+    #        cur = cur[:i] + guess + cur[i+1:]
+    #return cur
+    
+    ## O(m*n)
+    for i in range(occ):
+        pos = secret.index(guess, pos)
+        cur = cur[:pos] + guess + cur[pos+1:]
+        pos = pos+1
     return cur
 
         
